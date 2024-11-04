@@ -1,16 +1,18 @@
+// variables 
 const{IncomingForm} = require('formidable')
 const { readTasksFromile, writeTasksTofie } = require("../utils/fileHandler");
 const { error } = require('console');
 const { title } = require('process');
 const { copyFile, copyFileSync } = require('fs');
 const path = require('path');
-
+// exporting tasks
 exports.getTasks = (req, res)=>{
     const tasks = readTasksFromfile();
     res.writeHead(200,{'content-type':'appliction/json'})
         res.end(JSON.stringify(tasks))
 
 }
+// task creating
 exports.createTask = (re, res)=>{
     const form = new IncomingForm();
     form.parse(req,(err , field,files)=>{
@@ -21,6 +23,7 @@ exports.createTask = (re, res)=>{
         }))
         return;
     }
+    // imge uploading code
     const tasks = readTasksFromfile()
     const Image = File.Image[0]
     const newTask = {
@@ -43,6 +46,7 @@ exports.createTask = (re, res)=>{
 
 
 }
+// updating Task
 exports.updateTask = (req,res)=>{
     res.end(JSON.stringify({
         Message: 'not yet implemented'
